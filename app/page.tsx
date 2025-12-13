@@ -1,10 +1,10 @@
-import React from 'react'
 // The main page of "TheIdealMirror"
 
+import TeamSlot from '@/components/appComponents/TeamSlot'
+import React from 'react'
 
 
 function Home() {
-    const sinnerBox = "bg-amber-500 flex-1 m-1 pt-10 pb-10"
 
     const collectionBox = "bg-amber-600 flex-1 m-1 pt-2 pb-2"
   return (
@@ -20,20 +20,20 @@ function Home() {
             <h1 className="text-2xl text-center">Team Loadout</h1>
             {/* Flex Box Container Temporary */}
             <div className="flex">
-                <div className={sinnerBox}>Yi Sang</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Faust</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Don Quixote</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Ryoshu</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Meursault</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Hong Lu</div> {/* This is a cube. */}
+                <TeamSlot identityName={"Yi Sang"} image={""}/>
+                <TeamSlot identityName={"Faust"} image={""}/>
+                <TeamSlot identityName={"Don Quixote"} image={""}/>
+                <TeamSlot identityName={"Ryoshu"} image={""}/>
+                <TeamSlot identityName={"Meursault"} image={""}/>
+                <TeamSlot identityName={"Hong Lu"} image={""}/>
             </div>
             <div className="flex">
-                <div className={sinnerBox}>Heathcliff</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Ishmael</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Rodion</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Sinclair</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Outis</div> {/* This is a cube. */}
-                <div className={sinnerBox}>Gregor</div> {/* This is a cube. */}
+                <TeamSlot identityName={"Heathcliff"} image={""}/>
+                <TeamSlot identityName={"Ishmael"} image={""}/>
+                <TeamSlot identityName={"Rodion"} image={""}/>
+                <TeamSlot identityName={"Sinclair"} image={""}/>
+                <TeamSlot identityName={"Outis"} image={""}/>
+                <TeamSlot identityName={"Gregor"} image={""}/>
             </div>
 
             {/* Affinities */}

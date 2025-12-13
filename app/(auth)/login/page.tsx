@@ -1,3 +1,10 @@
+/*
+Login Page
+
+This page is where the user will login to an existing account with this site.
+Authenticates with Supabase data.
+*/
+
 'use client'
 
 import React from 'react'
@@ -21,6 +28,10 @@ function Login() {
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [confirmPasswordError, setConfirmPasswordError] = useState<string | null>(null);
 
   // Validation for whether fields are valid
   const isEmailValid = EMAIL_REGEX.test(email);
@@ -89,7 +100,6 @@ function Login() {
 
 
 
-
   return (
     <div className="flex max-w-md mx-auto px-4 py-8 bg-gray-900 rounded-2xl border-2 items-center justify-center h-screen flex-col">
       {/* Sign In section */}
@@ -119,12 +129,22 @@ function Login() {
                 onChange={e=>setEmail(e.target.value)}
                 aria-invalid={!isEmailValid && email.length > 0}/>
         {/* Password input */}
-        <label className="text-xl">Password</label>
-        <input className="input border-2 rounded p-1" 
+        <label className="text-xl ">Password</label>
+        <div className="flex border-2 rounded p-1">
+          <input className="input flex-2" 
                 placeholder="Type your password" 
                 value={password} 
                 onChange={e=>setPassword(e.target.value)}
-                aria-invalid={!isPasswordValid && password.length > 0}/>
+                aria-invalid={!isPasswordValid && password.length > 0}
+                type={showPass ? 'text' : 'password'}/>
+          {/* Show/Hide password button */}
+          <button className="mx-2 hover:text-gray-400 active:text-gray-700"
+                  type="button"
+                  onClick={() => {setShowPass((s) => !s)}}>
+            {showPass ? 'Hide' : 'Show'}
+          </button>
+        </div>
+        
         {/* Submit Button */}
         <button className="btn btn-primary w-full text-center p-2 rounded-2xl mt-5 bg-blue-600 
         hover:bg-blue-400 
@@ -143,7 +163,7 @@ function Login() {
       <div>
         <p className="text-center m-4">Or continue with:</p>
         {/* Google OAuth sign in button */}
-        <button className="btn w-full text-center border-2 rounded-2xl p-1" 
+        <button className="btn w-full text-center border-2 rounded-2xl p-1 hover:bg-gray-700 active:bg-gray-500" 
               onClick={handleGoogleOAuth}>Google</button>
       </div>
     </div>
