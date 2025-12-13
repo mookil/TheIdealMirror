@@ -33,6 +33,17 @@ function Home() {
         return m;
     }, [])
 
+    // build a share link and copy it to clipboard
+    const copyShareLink = async () => {
+        const { o, t } = buildShareParams(owned, teamSlots, SINNERS);
+        const base = `${window.location.origin}${window.location.pathname}`;
+        const url = new URL(base);
+        url.searchParams.set('o', o);
+        url.searchParams.set('t', t);
+        await navigator.clipboard.writeText(url.toString());
+        alert('Share link copied to clipboard!')
+    }
+
     // Function for CollectionCard to toggle owned/unowned
     const toggleOwned = (id: string) => {
         setOwned(prev => {
@@ -45,6 +56,14 @@ function Home() {
             return next;
         })
     }
+
+    // useEffect to load collection + loadout from URL on first load
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('o') || params.has('t')) {
+            applyShareParams(params, setOwned, setTeamSlots, SINNERS, unitsById);
+        }
+    }, [])
 
     // debug function, log the record of owned items
     useEffect(() => {
@@ -96,7 +115,8 @@ function Home() {
             </div>
 
             {/* Generate Share Link Button */}
-            <button className="bg-gray-500 text-center rounded-lg px-5 m-10 border border-gray-400 hover:bg-gray-400 active:bg-gray-700">
+            <button className="bg-gray-500 text-center rounded-lg px-5 m-10 border border-gray-400 hover:bg-gray-400 active:bg-gray-700"
+                    onClick={copyShareLink}>
                 Generate Share Link
             </button>
 
