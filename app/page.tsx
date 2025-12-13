@@ -1,12 +1,38 @@
 // The main page of "TheIdealMirror"
+'use client'
 
+import CollectionCard from '@/components/appComponents/CollectionCard'
 import TeamSlot from '@/components/appComponents/TeamSlot'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { UNITS } from '@/src/data/units'
 
+// sort of a dictionary detailing which id's are owned
+type OwnedMap = Record<string, boolean>;
 
 function Home() {
 
     const collectionBox = "bg-amber-600 flex-1 m-1 pt-2 pb-2"
+
+    const [owned, setOwned] = useState<OwnedMap>({});
+
+    const toggleOwned = (id: string) => {
+        setOwned(prev => {
+            const next = { ...prev };
+            if (next[id]) {
+                delete next[id];
+            } else {
+                next[id] = true;
+            }
+            return next;
+        })
+    }
+
+    // debug function, log the record of owned items
+    useEffect(() => {
+        console.log(owned)
+    }, [owned])
+
+
   return (
     <div className="text-center">
         {/* Header Area */}
@@ -20,7 +46,7 @@ function Home() {
             <h1 className="text-2xl text-center">Team Loadout</h1>
             {/* Flex Box Container Temporary */}
             <div className="flex">
-                <TeamSlot identityName={"Yi Sang"} image={""}/>
+                <TeamSlot identityName={"Yi Sang"} image={"sinnerCards/lcb_yisang.png"}/>
                 <TeamSlot identityName={"Faust"} image={""}/>
                 <TeamSlot identityName={"Don Quixote"} image={""}/>
                 <TeamSlot identityName={"Ryoshu"} image={""}/>
@@ -49,6 +75,24 @@ function Home() {
 
             </div>
 
+        </div>
+
+        <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20">
+            <h1 className="text-2xl text-center">Collection Test</h1>
+            <div className="gap-2">
+                {UNITS.map(item => (
+                <CollectionCard
+                key={item.id}
+                item={item}
+                owned={!!owned[item.id]}
+                onToggle={toggleOwned}
+                />
+                ))}
+            </div>
+            
+            <div>
+                
+            </div>
         </div>
 
         {/* Collection Area */}
