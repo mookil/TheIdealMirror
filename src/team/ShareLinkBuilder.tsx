@@ -7,6 +7,7 @@ in short: you can share what identities you have and your current team loadout
 
 import { Sinner, UnitItem } from "../types/units";
 
+// create a parameter for owned collection items + current team loadout
 export function buildShareParams(
     owned: Record<string, boolean>,
     teamSlots: Record<Sinner, UnitItem | null>,
@@ -25,6 +26,7 @@ export function buildShareParams(
     };
 }
 
+// apply and read in owned collection items + current team loadout from the given URL
 export function applyShareParams(
     params: URLSearchParams,
     setOwned: React.Dispatch<React.SetStateAction<Record<string, boolean>>>,

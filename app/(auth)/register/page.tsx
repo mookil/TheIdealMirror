@@ -64,7 +64,7 @@ function Register() {
         }
       }, [confirmPassword]);
 
-
+      // Send a register request
       const handleRegister = async (e: React.FormEvent) => {
           e.preventDefault();
           setError(null);
@@ -110,6 +110,7 @@ function Register() {
     
       {/* Register Form */}
       <form onSubmit={handleRegister} className="flex flex-col justify-items-center w-full">
+        {/* Email Section */}
         <label className="text-xl">Email</label>
         <input className="input border-2 rounded p-1" 
                 placeholder="Type your email" 
@@ -118,6 +119,7 @@ function Register() {
                 aria-invalid={!isEmailValid && email.length > 0}/>
         {emailError && <p className="text-red-400">{emailError}</p>}
 
+        {/* Password Section */}
         <label className="text-xl">Password</label>
         <div className="flex border-2 rounded p-1">
           <input className="input flex-2" 
@@ -135,6 +137,7 @@ function Register() {
         </div>
         {passwordError && <p className="text-red-400">{passwordError}</p>}
 
+        {/* Confirm Password Section */}
         <label className="text-xl">Confirm Password</label>
         <div className="flex border-2 rounded p-1">
           <input className="input flex-2" 

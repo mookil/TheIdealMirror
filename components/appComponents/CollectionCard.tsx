@@ -1,3 +1,10 @@
+/*
+CollectionCard
+
+This represents a card in the Collection.
+It can toggle being owned/unowned, 
+and can be clicked to be added to Team Loadout in the page.tsx.
+*/
 'use client';
 import React from 'react'
 import Image from 'next/image';

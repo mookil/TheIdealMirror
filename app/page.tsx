@@ -1,4 +1,31 @@
-// The main page of "TheIdealMirror"
+/* The main page of "TheIdealMirror"
+
+Author: Mikael Ly
+
+This is a Team Builder / Collection tracker made for the Limbus Company game.
+The features are:
+    - Collection Tracking with easy-to-click toggleable collection items
+    - Team Building with simple on-click team management
+    - Sharing through Share Links
+    - Login with google OAuth and email verification
+    - Supabase integration (nothing implemented from supabase database yet though)
+
+An overview of how this system works is that it reads in a set data of Sinner ID's 
+from the UNITS array over in src/data/units.ts . 
+
+Each identity (and eventually EGO) is a UnitType, defined in src/types/units.ts . 
+
+This page utilizes the TeamBuilderContext.tsx in src/team/TeamBuilderContext to 
+handle integration with Collection + Team Building.
+
+Utilizes supabase through the AuthProvider. (only used for login rn though)
+
+This page tracks owned collection items using a Record<string, boolean>, where 
+string = id, boolean = owned/unowned. 
+Team Building is handled + tracked by the TeamBuilderContext.tsx.
+
+
+*/
 'use client'
 
 import CollectionCard from '@/components/appComponents/CollectionCard'
@@ -6,25 +33,24 @@ import TeamSlot from '@/components/appComponents/TeamSlot'
 import React, { useEffect, useMemo, useState } from 'react'
 import { UNITS } from '@/src/data/units'
 import { UnitItem, UnitType, Sinner, SINNERS } from '@/src/types/units'
-import { TeamBuilderProvider, useTeamBuilder } from '@/src/team/TeamBuilderContext'
+import { useTeamBuilder } from '@/src/team/TeamBuilderContext'
 import TeamSidebar from '@/components/appComponents/TeamSidebar'
 import { buildShareParams, applyShareParams } from '@/src/team/ShareLinkBuilder'
 
-// sort of a dictionary detailing which id's are owned
-type OwnedMap = Record<string, boolean>;
+// unique data types
+type OwnedMap = Record<string, boolean>; // sort of a dictionary detailing which id's are owned
 type Rarity = '0' | '00' | '000';
 type OwnedFilterType = 'all' | 'owned' | 'unowned';
 type SinnerFilter = Sinner | 'all'
 
 function Home() {
-    const [owned, setOwned] = useState<OwnedMap>({});
-    const [query, setQuery] = useState('');
+    const [owned, setOwned] = useState<OwnedMap>({}); // a list of all units, along with boolean detailing whether they're owned
     //const [type, setType] = useState<UnitType | 'all'>('all'); // Used for differentiating between Identity + EGO, but I don't have enough time to include both
-    const [sinnerSort, setSinnerSort] = useState<SinnerFilter>('all');
-    const [rarity, setRarity] = useState<Rarity | 'all'>('all');
-    const [ownedFilter, setOwnedFilter] = useState<OwnedFilterType>('all')
+    const [sinnerSort, setSinnerSort] = useState<SinnerFilter>('all'); // filter to sort by specific Sinners
+    const [rarity, setRarity] = useState<Rarity | 'all'>('all'); // filter to sort by rarity
+    const [ownedFilter, setOwnedFilter] = useState<OwnedFilterType>('all') // filter to sort by owned, unowned, or all
 
-    const { teamSlots, setTeamSlots } = useTeamBuilder();
+    const { teamSlots, setTeamSlots } = useTeamBuilder(); // team slots handler
 
     // look up units by ID
     const unitsById = useMemo(() => {
@@ -70,10 +96,8 @@ function Home() {
         console.log(owned)
     }, [owned])
 
-    // Filter list
+    // Filter list by criteria
     const filtered = useMemo(() => {
-        const q = query.trim().toLowerCase();
-
         return UNITS.filter(item => {
             // Sinner filter
             const matchSinner = sinnerSort === 'all' || (item.sinner === sinnerSort);
@@ -86,17 +110,17 @@ function Home() {
                 ownedFilter === 'all' ||
                 (ownedFilter === 'owned' && isOwned) ||
                 (ownedFilter === 'unowned' && !isOwned);
-            
 
-
+            // return all results that pass the filters
             return matchSinner && matchRarity && matchOwned;
         });
     }, [sinnerSort, rarity, ownedFilter, owned])
 
 
   return (
-        <div className="text-center">
-            <TeamSidebar/>
+        <div className="mx-auto">
+            {/* The sidebar, currently just the Begin Select button */}
+            <TeamSidebar/> 
         {/* Header Area */}
         <div className="bg-gray-900 rounded-2xl p-3">
             <h1 className="text-3xl text-center font-bold">The Ideal Mirror</h1>
@@ -104,7 +128,7 @@ function Home() {
         </div>
 
         {/* Team Loadout Area */}
-        <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20 mb-5">
+        <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20 mb-5 text-center">
             <h1 className="text-2xl text-center">Team Loadout</h1>
             
             {/* Flex Box Container Temporary */}
@@ -143,7 +167,7 @@ function Home() {
             <h1 className="text-2xl text-center">Collection</h1>
             {/* Filter Options will go here */}
             <div className="">
-                {/* Rarity Filter */}
+                {/* Sinner Filter */}
                 <label>Sinner Filter</label>
                 <select
                     value={sinnerSort}
@@ -203,17 +227,23 @@ function Home() {
         </div>
 
         {/* Footer Area */}
-        <div className="bg-gray-900 rounded-2xl p-3 mt-10">
-            <h1 className="text-2xl text-center">About</h1>
-            <p>This site is meant for the game Limbus Company.</p>
+        <div className="bg-gray-900 rounded-2xl p-3 mt-10 text-center">
+            <h1 className="text-2xl">About</h1>
+            <p >This site is meant for the game Limbus Company.</p>
             <p>Anything from this website is not affiliated with ProjectMoon.</p>
             <p>Currently, the data is not up-to-date with all Limbus Company assets.</p>
             <p>All the data is currently place-holders.</p>
             <br></br>
+            <h1 className="text-2xl">How to use</h1>
             <p>To use this app, click on any of the Collection Items to toggle them as owned.</p>
             <p>To build a team, press the top left "Begin Select" button.</p>
             <p>While "Begin Select" is toggled, you can click on any ID in the collection to build a team.</p>
             <p>To cancel and go back to toggling owned Identities, press "Cancel Select".</p>
+            <br></br>
+            <h1 className="text-2xl">How to save/load</h1>
+            <p>To save your current collection + loadout, press the Generate Share Link button.</p>
+            <p>It will copy your state down into a link that will copy to your clipboard.</p>
+            <p>To load it back in, just paste it into your browser and go to the link.</p>
 
         </div>
     </div>

@@ -3,6 +3,7 @@ TeamSlot.tsx
 
 This represents a Sinner in the Team Loadout.
 Should have an image + name.
+Currently, only working with a name (eventually may add images)
 */
 
 import { useTeamBuilder } from '@/src/team/TeamBuilderContext';
@@ -13,11 +14,11 @@ function TeamSlot({ sinner }: {sinner: Sinner}) {
   const { teamSlots, clearSlot } = useTeamBuilder();
   const assigned = teamSlots[sinner];
 
-  const sinnerBox = "bg-amber-600 p-3 grid grid-cols-1 gap-2 m-3 w-full"
+  const sinnerBox = "bg-amber-600 p-3 grid grid-cols-1 gap-2 m-3 w-full rounded text-center"
 
   return (
     <div className={sinnerBox}>
-      <p className="text-center">{sinner}</p>
+      <p className="text-2xl">{sinner}</p>
       
       <div className="mt-1">
             {assigned ? assigned.name : 'Empty'}

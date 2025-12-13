@@ -2,6 +2,8 @@
 Header.tsx
 =================
 This is the Header component of the main TheIdealMirror page.
+Only really contains the login/logout button for now.
+
 */
 "use client"
 
