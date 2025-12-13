@@ -30,14 +30,23 @@ function Login() {
   const [busy, setBusy] = useState(false);
 
   const [emailError, setEmailError] = useState<string | null>(null);
-  const [passwordError, setPasswordError] = useState<string | null>(null);
-  const [confirmPasswordError, setConfirmPasswordError] = useState<string | null>(null);
 
   // Validation for whether fields are valid
   const isEmailValid = EMAIL_REGEX.test(email);
   const isPasswordValid = password.length >= 6;
   const canSubmit = isEmailValid && isPasswordValid && !busy && !loading;
 
+  // useEffect for checking email field
+  useEffect(() => {
+    if (!email) {
+        setEmailError('Email is required.')
+    } else if (!isEmailValid) {
+        setEmailError('Invalid email.')
+    } else {
+        setEmailError(null)
+    }
+  }, [email]);
+  
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,30 +65,13 @@ function Login() {
 
     } finally {
       setBusy(false);
+      router.push("/")
 
     }
     
   }
 
   const handleRegister = async (e: React.FormEvent) => {
-    // e.preventDefault();
-    // setError(null);
-    // setInfo(null);
-
-    // // If user can't submit yet, cancel the function
-    // if (!canSubmit) return;
-
-    // try {
-    //   setBusy(true);
-    //   await signUpWithEmail(email, password);
-
-    // } catch (err: any) {
-    //   setError(err?.message ?? 'Register failed.');
-
-    // } finally {
-    //   setBusy(false);
-
-    // }
     router.push("/register")
   }
 
@@ -106,6 +98,7 @@ function Login() {
       <div className="flex p-20">
         <h1 className="text-3xl text-center font-bold">Login</h1>
       </div>
+      <button onClick={() => router.push("/")}> Go to Home </button>
       
 
       {/* Error + Info banners */}
@@ -128,6 +121,7 @@ function Login() {
                 value={email} 
                 onChange={e=>setEmail(e.target.value)}
                 aria-invalid={!isEmailValid && email.length > 0}/>
+        {emailError && <p className="text-red-400">{emailError}</p>}
         {/* Password input */}
         <label className="text-xl ">Password</label>
         <div className="flex border-2 rounded p-1">

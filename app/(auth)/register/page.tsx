@@ -29,7 +29,7 @@ function Register() {
       // Validation for whether fields are valid
       const isEmailValid = EMAIL_REGEX.test(email);
       const isPasswordValid = password.length >= 6;
-      const canSubmit = isEmailValid && isPasswordValid && !busy && !loading;
+      const canSubmit = isEmailValid && isPasswordValid && (confirmPassword == password) && !busy && !loading;
 
       // useEffect for checking email field
       useEffect(() => {
@@ -45,24 +45,46 @@ function Register() {
       // useEffect for checking password field
       useEffect(() => {
         if (!password) {
-            setEmailError('Password is required.')
+            setPasswordError('Password is required.')
         } else if (!isPasswordValid) {
-            setEmailError('Password requires a minimum of 6 characters.')
+            setPasswordError('Password requires a minimum of 6 characters.')
         } else {
-            setEmailError(null)
+            setPasswordError(null)
         }
       }, [password]);
 
       // useEffect for checking confirm password field
       useEffect(() => {
         if (!confirmPassword) {
-            setEmailError('Please confirm your password.')
+            setConfirmPasswordError('Please confirm your password.')
         } else if (confirmPassword != password) {
-            setEmailError('Passwords do not match.')
+            setConfirmPasswordError('Passwords do not match.')
         } else {
-            setEmailError(null)
+            setConfirmPasswordError(null)
         }
       }, [confirmPassword]);
+
+
+      const handleRegister = async (e: React.FormEvent) => {
+          e.preventDefault();
+          setError(null);
+          setInfo(null);
+      
+          // If user can't submit yet, cancel the function
+          if (!canSubmit) return;
+      
+          try {
+            setBusy(true);
+            await signUpWithEmail(email, password);
+            setInfo('Account created! Please check your email to verify.')
+      
+          } catch (err: any) {
+            setError(err?.message ?? 'Register failed.');
+      
+          } finally {
+            setBusy(false);
+          }
+        }
 
 
 
@@ -72,16 +94,69 @@ function Register() {
       <div className="flex p-20">
         <h1 className="text-3xl text-center font-bold">Register</h1>
       </div>
+      <button onClick={() => router.push("/")}> Go to Home </button>
+
+      {/* Error + Info banners */}
+      {info && (
+        <div className="text-blue-200">
+          {info} 
+        </div>
+      )}
+      {error && (
+        <div className="text-red-200">
+          {error} 
+        </div>
+      )}
     
       {/* Register Form */}
-      <form>
-        <label>Email</label>
+      <form onSubmit={handleRegister} className="flex flex-col justify-items-center w-full">
+        <label className="text-xl">Email</label>
+        <input className="input border-2 rounded p-1" 
+                placeholder="Type your email" 
+                value={email} 
+                onChange={e=>setEmail(e.target.value)}
+                aria-invalid={!isEmailValid && email.length > 0}/>
+        {emailError && <p className="text-red-400">{emailError}</p>}
 
-        <label>Password</label>
+        <label className="text-xl">Password</label>
+        <div className="flex border-2 rounded p-1">
+          <input className="input flex-2" 
+                placeholder="Type your password" 
+                value={password} 
+                onChange={e=>setPassword(e.target.value)}
+                aria-invalid={!isPasswordValid && password.length > 0}
+                type={showPass ? 'text' : 'password'}/>
+          {/* Show/Hide password button */}
+          <button className="mx-2 hover:text-gray-400 active:text-gray-700"
+                  type="button"
+                  onClick={() => {setShowPass((s) => !s)}}>
+            {showPass ? 'Hide' : 'Show'}
+          </button>
+        </div>
+        {passwordError && <p className="text-red-400">{passwordError}</p>}
 
-        <label>Confirm Password</label>
+        <label className="text-xl">Confirm Password</label>
+        <div className="flex border-2 rounded p-1">
+          <input className="input flex-2" 
+                placeholder="Re-type your password" 
+                value={confirmPassword} 
+                onChange={e=>setConfirmPassword(e.target.value)}
+                aria-invalid={!isPasswordValid && password.length > 0}
+                type={showPass ? 'text' : 'password'}/>
+        </div>
+        {confirmPasswordError && <p className="text-red-400">{confirmPasswordError}</p>}
+
+        {/* Submit Button */}
+        <button className="btn btn-primary w-full text-center p-2 rounded-2xl mt-5 bg-blue-600 
+        hover:bg-blue-400 
+        active:bg-blue-700
+        disabled:opacity-60
+        disabled:cursor-not-allowed" 
+        type="submit"
+        disabled={!canSubmit}>{busy ? "Registering..." : "Create new account"}</button>
 
       </form>
+
 
     </div>
   )
