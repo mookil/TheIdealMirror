@@ -24,6 +24,9 @@ This page tracks owned collection items using a Record<string, boolean>, where
 string = id, boolean = owned/unowned. 
 Team Building is handled + tracked by the TeamBuilderContext.tsx.
 
+There are plans to allow the ability to access this site as a
+RESTful API, so you can get the info of Identities + EGO's, but 
+currently out of my timeframe.
 
 */
 'use client'
