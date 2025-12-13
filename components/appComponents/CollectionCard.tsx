@@ -11,17 +11,14 @@ type Props = {
 }
 
 function CollectionCard({ item, owned, onToggle} : Props) {
-  const unownedClassName = "border-2 m-1 p-1"
-  const ownedClassName = "border-2 bg-amber-500 m-1 p-1"
+  const unownedClassName = "border-2 m-1 p-1 opacity-50"
+  const ownedClassName = "border-2 m-1 p-1"
 
 
   return (
     <button className={owned ? ownedClassName : unownedClassName} onClick={() => onToggle(item.id)}> 
       <div>
-        {item.name} {item.sinner}
-      </div>
-      <div>
-        {owned}
+        <p>[{item.rarity}] {item.name} {item.sinner}</p>
       </div>
     </button>
   )
