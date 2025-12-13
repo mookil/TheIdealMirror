@@ -2,6 +2,7 @@
 import React from 'react'
 import Image from 'next/image';
 import { UnitItem } from '@/src/types/units';
+import { useTeamBuilder } from '@/src/team/TeamBuilderContext';
 
 type Props = {
   item: UnitItem;
@@ -11,12 +12,25 @@ type Props = {
 }
 
 function CollectionCard({ item, owned, onToggle} : Props) {
-  const unownedClassName = "border-2 m-1 p-1 opacity-50"
-  const ownedClassName = "border-2 m-1 p-1"
+  const { isOpen, assignByUnit } = useTeamBuilder();
+
+  // Handle when this card is clicked:
+  const handleClick = () => {
+    // if the sidebar is open, assign it to the given sinner team slot. otherwise just toggle owned
+    if (isOpen) {
+      assignByUnit(item);
+      return;
+    }
+    onToggle(item.id);
+  }
+
+  const hoverName = " hover:opacity-80 "
+  const unownedClassName = "border-2 m-1 p-1 opacity-50 active:border-amber-500" + hoverName
+  const ownedClassName = "border-2 m-1 p-1 border-amber-500" + hoverName
 
 
   return (
-    <button className={owned ? ownedClassName : unownedClassName} onClick={() => onToggle(item.id)}> 
+    <button className={owned ? ownedClassName : unownedClassName} onClick={handleClick}> 
       <div>
         <p>[{item.rarity}] {item.name} {item.sinner}</p>
       </div>

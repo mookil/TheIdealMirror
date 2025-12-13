@@ -79,7 +79,7 @@ export const UNITS: UnitItem[] = [
   },
   {
     id: 'LaMancha-DonQuixote',
-    name: 'The Maanger of La Manchaland',
+    name: 'The Manager of La Manchaland',
     sinner: 'DonQuixote',
     type: 'identity',
     rarity: '000',

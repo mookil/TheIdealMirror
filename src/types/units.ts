@@ -2,10 +2,42 @@
 Units
 
 This is an interface for Unit types, Identities and EGO's.
-Used for organization and as a shape for items.
+Used for organization and as a shape for items and other components.
 */
 
 export type UnitType = 'identity' | 'ego'
+
+// export type SINNERS =  'YiSang' | 
+//                 'Faust' | 
+//                 'DonQuixote' | 
+//                 'Ryoshu' | 
+//                 'Meursault' | 
+//                 'HongLu'|
+//                 'Heathcliff'|
+//                 'Ishmael'|
+//                 'Rodion'|
+//                 'Sinclair'|
+//                 'Outis'|
+//                 'Gregor'
+
+
+export const SINNERS = [
+  'YiSang', 
+  'Faust', 
+  'DonQuixote', 
+  'Ryoshu', 
+  'Meursault',
+  'HongLu', 
+  'Heathcliff', 
+  'Ishmael', 
+  'Rodion', 
+  'Sinclair',
+  'Outis', 
+  'Gregor'
+] as const;
+
+
+export type Sinner = typeof SINNERS[number];
 
 export interface UnitItem {
     id: string;                     // unique ID

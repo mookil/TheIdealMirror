@@ -5,17 +5,21 @@ import CollectionCard from '@/components/appComponents/CollectionCard'
 import TeamSlot from '@/components/appComponents/TeamSlot'
 import React, { useEffect, useMemo, useState } from 'react'
 import { UNITS } from '@/src/data/units'
-import { UnitItem, UnitType } from '@/src/types/units'
+import { UnitItem, UnitType, Sinner, SINNERS } from '@/src/types/units'
+import { TeamBuilderProvider } from '@/src/team/TeamBuilderContext'
+import TeamSidebar from '@/components/appComponents/TeamSidebar'
 
 // sort of a dictionary detailing which id's are owned
 type OwnedMap = Record<string, boolean>;
 type Rarity = '0' | '00' | '000';
 type OwnedFilterType = 'all' | 'owned' | 'unowned';
+type SinnerFilter = Sinner | 'all'
 
 function Home() {
     const [owned, setOwned] = useState<OwnedMap>({});
     const [query, setQuery] = useState('');
     //const [type, setType] = useState<UnitType | 'all'>('all');
+    const [sinnerSort, setSinnerSort] = useState<SinnerFilter>('all');
     const [rarity, setRarity] = useState<Rarity | 'all'>('all');
     const [ownedFilter, setOwnedFilter] = useState<OwnedFilterType>('all')
 
@@ -42,6 +46,8 @@ function Home() {
         const q = query.trim().toLowerCase();
 
         return UNITS.filter(item => {
+            // Sinner filter
+            const matchSinner = sinnerSort === 'all' || (item.sinner === sinnerSort);
             // Rarity filter
             const matchRarity = rarity === 'all' || (item.type === 'identity' && item.rarity === rarity);
 
@@ -51,14 +57,18 @@ function Home() {
                 ownedFilter === 'all' ||
                 (ownedFilter === 'owned' && isOwned) ||
                 (ownedFilter === 'unowned' && !isOwned);
+            
 
-            return matchRarity && matchOwned;
+
+            return matchSinner && matchRarity && matchOwned;
         });
-    }, [rarity, ownedFilter, owned])
+    }, [sinnerSort, rarity, ownedFilter, owned])
 
 
   return (
-    <div className="text-center">
+    <TeamBuilderProvider>
+        <TeamSidebar/>
+        <div className="text-center">
         {/* Header Area */}
         <div className="bg-gray-900 rounded-2xl p-3">
             <h1 className="text-3xl text-center font-bold">The Ideal Mirror</h1>
@@ -68,27 +78,17 @@ function Home() {
         {/* Team Loadout Area */}
         <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20">
             <h1 className="text-2xl text-center">Team Loadout</h1>
-            <p>~ Currently not implemented ~</p>
             {/* Flex Box Container Temporary */}
-            <div className="flex">
-                <TeamSlot identityName={"Yi Sang"} image={"sinnerCards/lcb_yisang.png"}/>
-                <TeamSlot identityName={"Faust"} image={""}/>
-                <TeamSlot identityName={"Don Quixote"} image={""}/>
-                <TeamSlot identityName={"Ryoshu"} image={""}/>
-                <TeamSlot identityName={"Meursault"} image={""}/>
-                <TeamSlot identityName={"Hong Lu"} image={""}/>
-            </div>
-            <div className="flex">
-                <TeamSlot identityName={"Heathcliff"} image={""}/>
-                <TeamSlot identityName={"Ishmael"} image={""}/>
-                <TeamSlot identityName={"Rodion"} image={""}/>
-                <TeamSlot identityName={"Sinclair"} image={""}/>
-                <TeamSlot identityName={"Outis"} image={""}/>
-                <TeamSlot identityName={"Gregor"} image={""}/>
+            <div className="grid grid-cols-6 gap-3">
+                {SINNERS.map(sinner => (
+                    <TeamSlot key={sinner} sinner={sinner}/>
+                ))}
             </div>
 
             {/* Affinities */}
-            <div>
+            {/* Going to be unimplemented for a bit. */}
+            {/* Reasoning: i'd have to go through each ID and manually input affinities, i'm not doing that within my time period*/}
+            {/* <div>
                 <h1 className="underline text-2xl">Sin Affinities</h1>
                 <p>Wrath: x2/5</p>
                 <p>Lust: x6/8</p>
@@ -98,7 +98,7 @@ function Home() {
                 <p>Pride: x6/7</p>
                 <p>Envy: x6/7</p>
 
-            </div>
+            </div> */}
 
         </div>
 
@@ -107,6 +107,27 @@ function Home() {
             <h1 className="text-2xl text-center">Collection</h1>
             {/* Filter Options will go here */}
             <div className="">
+                {/* Rarity Filter */}
+                <label>Sinner Filter</label>
+                <select
+                    value={sinnerSort}
+                    onChange={(e) => setSinnerSort(e.target.value as any)}
+                    className="rounded border p-1 m-1">
+                        <option value="all" className="text-black">All</option>
+                        <option value="YiSang" className="text-black">Yi Sang</option>
+                        <option value="Faust" className="text-black">Faust</option>
+                        <option value="DonQuixote" className="text-black">DonQuixote</option>
+                        <option value="Ryoshu" className="text-black">Ryoshu</option>
+                        <option value="Meursault" className="text-black">Meursault</option>
+                        <option value="HongLu" className="text-black">HongLu</option>
+                        <option value="Heathcliff" className="text-black">Heathcliff</option>
+                        <option value="Ishmael" className="text-black">Ishmael</option>
+                        <option value="Rodion" className="text-black">Rodion</option>
+                        <option value="Sinclair" className="text-black">Sinclair</option>
+                        <option value="Outis" className="text-black">Outis</option>
+                        <option value="Gregor" className="text-black">Gregor</option>
+                </select>
+
                 {/* Rarity Filter */}
                 <label>Rarity Filter</label>
                 <select
@@ -157,6 +178,9 @@ function Home() {
 
         </div>
     </div>
+
+    </TeamBuilderProvider>
+    
   )
 }
 
