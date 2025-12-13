@@ -6,8 +6,9 @@ import TeamSlot from '@/components/appComponents/TeamSlot'
 import React, { useEffect, useMemo, useState } from 'react'
 import { UNITS } from '@/src/data/units'
 import { UnitItem, UnitType, Sinner, SINNERS } from '@/src/types/units'
-import { TeamBuilderProvider } from '@/src/team/TeamBuilderContext'
+import { TeamBuilderProvider, useTeamBuilder } from '@/src/team/TeamBuilderContext'
 import TeamSidebar from '@/components/appComponents/TeamSidebar'
+import { buildShareParams, applyShareParams } from '@/src/team/ShareLinkBuilder'
 
 // sort of a dictionary detailing which id's are owned
 type OwnedMap = Record<string, boolean>;
@@ -18,10 +19,19 @@ type SinnerFilter = Sinner | 'all'
 function Home() {
     const [owned, setOwned] = useState<OwnedMap>({});
     const [query, setQuery] = useState('');
-    //const [type, setType] = useState<UnitType | 'all'>('all');
+    //const [type, setType] = useState<UnitType | 'all'>('all'); // Used for differentiating between Identity + EGO, but I don't have enough time to include both
     const [sinnerSort, setSinnerSort] = useState<SinnerFilter>('all');
     const [rarity, setRarity] = useState<Rarity | 'all'>('all');
     const [ownedFilter, setOwnedFilter] = useState<OwnedFilterType>('all')
+
+    const { teamSlots, setTeamSlots } = useTeamBuilder();
+
+    // look up units by ID
+    const unitsById = useMemo(() => {
+        const m: Record<string, UnitItem> = {};
+        UNITS.forEach(u => { m[u.id] = u; });
+        return m;
+    }, [])
 
     // Function for CollectionCard to toggle owned/unowned
     const toggleOwned = (id: string) => {
@@ -66,9 +76,8 @@ function Home() {
 
 
   return (
-    <TeamBuilderProvider>
-        <TeamSidebar/>
         <div className="text-center">
+            <TeamSidebar/>
         {/* Header Area */}
         <div className="bg-gray-900 rounded-2xl p-3">
             <h1 className="text-3xl text-center font-bold">The Ideal Mirror</h1>
@@ -76,14 +85,20 @@ function Home() {
         </div>
 
         {/* Team Loadout Area */}
-        <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20">
+        <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20 mb-5">
             <h1 className="text-2xl text-center">Team Loadout</h1>
+            
             {/* Flex Box Container Temporary */}
             <div className="grid grid-cols-6 gap-3">
                 {SINNERS.map(sinner => (
                     <TeamSlot key={sinner} sinner={sinner}/>
                 ))}
             </div>
+
+            {/* Generate Share Link Button */}
+            <button className="bg-gray-500 text-center rounded-lg px-5 m-10 border border-gray-400 hover:bg-gray-400 active:bg-gray-700">
+                Generate Share Link
+            </button>
 
             {/* Affinities */}
             {/* Going to be unimplemented for a bit. */}
@@ -101,6 +116,7 @@ function Home() {
             </div> */}
 
         </div>
+        
 
         {/* Collection Area */}
         <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20">
@@ -175,11 +191,12 @@ function Home() {
             <p>All the data is currently place-holders.</p>
             <br></br>
             <p>To use this app, click on any of the Collection Items to toggle them as owned.</p>
+            <p>To build a team, press the top left "Begin Select" button.</p>
+            <p>While "Begin Select" is toggled, you can click on any ID in the collection to build a team.</p>
+            <p>To cancel and go back to toggling owned Identities, press "Cancel Select".</p>
 
         </div>
     </div>
-
-    </TeamBuilderProvider>
     
   )
 }

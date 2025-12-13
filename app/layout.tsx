@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import AuthProvider from "@/auth/AuthProvider";
-import Providers from "./providers";
+import { TeamBuilderProvider } from "@/src/team/TeamBuilderContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,10 +32,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
+          <TeamBuilderProvider>
           <Header/>
           <main>
             {children}
             </main>
+            </TeamBuilderProvider>
         </AuthProvider>
       </body>
     </html>

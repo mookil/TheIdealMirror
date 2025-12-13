@@ -31,11 +31,6 @@ function Header() {
             <button className="flex-1 bg-gray-500 text-center rounded-lg px-5 text-sm border border-gray-400 hover:bg-gray-400 active:bg-gray-700" onClick={onLoginLogout}>
               {user ? 'Logout' : 'Login'}
               </button>
-            {/* Generate Share Link Button */}
-            <button className="flex-1 bg-gray-500 text-center rounded-lg whitespace-nowrap px-5 text-sm border border-gray-400 hover:bg-gray-400 active:bg-gray-700">
-              Generate Share Link
-              </button>
-
         </div>
         
     </div>

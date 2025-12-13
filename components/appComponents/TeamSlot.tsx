@@ -24,7 +24,7 @@ function TeamSlot({ sinner }: {sinner: Sinner}) {
         </div>
       
       {assigned ? (
-                <button className="rounded px-2 py-1 bg-neutral-700"
+                <button className="rounded px-2 py-1 bg-neutral-700 hover:bg-neutral-500 active:opacity-60"
                 onClick={() => clearSlot(sinner)}>Clear</button>
             ) : null}
       
