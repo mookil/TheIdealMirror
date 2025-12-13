@@ -1,5 +1,14 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+This project has several dependencies.
+In order to run this project, please run these in terminal:
+```bash
+npm install
+npm install @supabase/supabase-js
+npm install react-router-dom
+```
+*note, connectivity will not work unless you have the .env file with API keys
+
 ## Getting Started
 
 First, run the development server:

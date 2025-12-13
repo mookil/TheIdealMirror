@@ -16,7 +16,7 @@ function Home() {
         </div>
 
         {/* Team Loadout Area */}
-        <div className="bg-gray-900 rounded-2xl p-3 mt-10">
+        <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20">
             <h1 className="text-2xl text-center">Team Loadout</h1>
             {/* Flex Box Container Temporary */}
             <div className="flex">
@@ -38,19 +38,21 @@ function Home() {
 
             {/* Affinities */}
             <div>
-                <h1 className="underline text-2xl">Affinities</h1>
+                <h1 className="underline text-2xl">Sin Affinities</h1>
                 <p>Wrath: x2/5</p>
+                <p>Lust: x6/8</p>
                 <p>Sloth: x6/8</p>
                 <p>Gluttony: x6/9</p>
-                <p>Cheese: x6/7</p>
                 <p>Gloom: x6/7</p>
+                <p>Pride: x6/7</p>
+                <p>Envy: x6/7</p>
 
             </div>
 
         </div>
 
         {/* Collection Area */}
-        <div className="bg-gray-900 rounded-2xl p-3 mt-10">
+        <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20">
             <h1 className="text-2xl text-center">Collection</h1>
             <div className="flex">
                 <div className={collectionBox}>1</div> {/* This is a cube. */}
@@ -95,11 +97,9 @@ function Home() {
         {/* Footer Area */}
         <div className="bg-gray-900 rounded-2xl p-3 mt-10">
             <h1 className="text-2xl text-center">About</h1>
-            <p>beepboopbeobrobepsborbserpsorbosopbsoer</p>
-            <p>beepboopbeobrobepsborbserpsorbosopbsoer</p>
-            <p>beepboopbeobrobepsborbserpsorbosopbsoer</p>
-            <p>beepboopbeobrobepsborbserpsorbosopbsoer</p>
-            <p>beepboopbeobrobepsborbserpsorbosopbsoer</p>
+            <p>This site is meant for the game Limbus Company.</p>
+            <p>Anything from this website is not affiliated with ProjectMoon.</p>
+            <p>This site was made by a student for their Final Project.</p>
 
         </div>
     </div>
