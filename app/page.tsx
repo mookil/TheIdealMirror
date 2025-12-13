@@ -99,7 +99,8 @@ function Home() {
             <h1 className="text-2xl text-center">About</h1>
             <p>This site is meant for the game Limbus Company.</p>
             <p>Anything from this website is not affiliated with ProjectMoon.</p>
-            <p>This site was made by a student for their Final Project.</p>
+            <p>Currently, the data is not up-to-date with all Limbus Company assets.</p>
+            <p>All the data is currently place-holders.</p>
 
         </div>
     </div>

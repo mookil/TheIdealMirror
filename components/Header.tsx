@@ -27,10 +27,12 @@ function Header() {
     <div className="fixed top-0 right-0 z-50 h-10 flex">
         {/* Buttons Container */}
         <div className="flex items-center justify-between flex-column gap-5 px-5">
-            <button className="flex-1 bg-gray-500 text-center rounded-lg px-5 text-sm" onClick={onLoginLogout}>
+            {/* Login Button */}
+            <button className="flex-1 bg-gray-500 text-center rounded-lg px-5 text-sm border border-gray-400 hover:bg-gray-400 active:bg-gray-700" onClick={onLoginLogout}>
               {user ? 'Logout' : 'Login'}
               </button>
-            <button className="flex-1 bg-gray-500 text-center rounded-lg whitespace-nowrap px-5 text-sm">
+            {/* Generate Share Link Button */}
+            <button className="flex-1 bg-gray-500 text-center rounded-lg whitespace-nowrap px-5 text-sm border border-gray-400 hover:bg-gray-400 active:bg-gray-700">
               Generate Share Link
               </button>
 
