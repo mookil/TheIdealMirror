@@ -8,30 +8,30 @@ import { UnitItem } from "../types/units";
 
 
 export const UNITS: UnitItem[] = [
-  // ==== YiSang ====
+  // ==== Yi Sang ====
   {
     id: 'LCB-YiSang',
     name: 'LCB Sinner',
-    sinner: 'YiSang',
+    sinner: 'Yi Sang',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'SEVEN-YiSang',
     name: 'Seven Association South Section 6',
-    sinner: 'YiSang',
+    sinner: 'Yi Sang',
     type: 'identity',
     rarity: '00',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/seven_yisang.png'
   },
   {
     id: 'Spice-YiSang',
     name: 'Effloresced E.G.O::Spicebush',
-    sinner: 'YiSang',
+    sinner: 'Yi Sang',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Faust ====
@@ -41,7 +41,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Faust',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'NCorp-Faust',
@@ -49,7 +49,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Faust',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'WCorp-Faust',
@@ -57,33 +57,33 @@ export const UNITS: UnitItem[] = [
     sinner: 'Faust',
     type: 'identity',
     rarity: '00',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Don Quixote ====
   {
     id: 'LCB-DonQuixote',
     name: 'LCB Sinner',
-    sinner: 'DonQuixote',
+    sinner: 'Don Quixote',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Cinq5-DonQuixote',
     name: 'Cinq Assoc. South Section 5',
-    sinner: 'DonQuixote',
+    sinner: 'Don Quixote',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'LaMancha-DonQuixote',
     name: 'The Manager of La Manchaland',
-    sinner: 'DonQuixote',
+    sinner: 'Don Quixote',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Ryoshu ====
@@ -93,7 +93,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Ryoshu',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Drifter-Ryoshu',
@@ -101,7 +101,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Ryoshu',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Kurokumo-Ryoshu',
@@ -109,7 +109,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Ryoshu',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Meursault ====
@@ -119,7 +119,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Meursault',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'NCorp-Meursault',
@@ -127,7 +127,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Meursault',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'RCompany-Meursault',
@@ -135,7 +135,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Meursault',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Hong Lu ====
@@ -145,7 +145,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'HongLu',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Liu-HongLu',
@@ -153,7 +153,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'HongLu',
     type: 'identity',
     rarity: '00',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Hongyuan-HongLu',
@@ -161,7 +161,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'HongLu',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Heathcliff ====
@@ -171,7 +171,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Heathcliff',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Shi-Heathcliff',
@@ -179,7 +179,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Heathcliff',
     type: 'identity',
     rarity: '00',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'WildHunt-Heathcliff',
@@ -187,7 +187,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Heathcliff',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Ishmael ====
@@ -197,7 +197,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Ishmael',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Shi-Ishmael',
@@ -205,7 +205,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Ishmael',
     type: 'identity',
     rarity: '00',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Zwei-Ishmael',
@@ -213,7 +213,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Ishmael',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Rodion ====
@@ -223,7 +223,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Rodion',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'NCorp-Rodion',
@@ -231,7 +231,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Rodion',
     type: 'identity',
     rarity: '00',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'KoD-Rodion',
@@ -239,7 +239,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Rodion',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Sinclair ====
@@ -249,7 +249,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Sinclair',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'BladeLineage-Sinclair',
@@ -257,7 +257,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Sinclair',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'NCorp-Sinclair',
@@ -265,7 +265,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Sinclair',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Outis ====
@@ -275,7 +275,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Outis',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'BL-Outis',
@@ -283,7 +283,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Outis',
     type: 'identity',
     rarity: '00',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Butler-Outis',
@@ -291,7 +291,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Outis',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
 
   // ==== Gregor ====
@@ -301,7 +301,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Gregor',
     type: 'identity',
     rarity: '0',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Liu-Gregor',
@@ -309,7 +309,7 @@ export const UNITS: UnitItem[] = [
     sinner: 'Gregor',
     type: 'identity',
     rarity: '00',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   },
   {
     id: 'Firefist-Gregor',
@@ -317,6 +317,6 @@ export const UNITS: UnitItem[] = [
     sinner: 'Gregor',
     type: 'identity',
     rarity: '000',
-    imageUrl: 'public/sinnerCards/lcb_yisang.png'
+    imageUrl: '/sinnerCards/lcb_yisang.png'
   }
 ]

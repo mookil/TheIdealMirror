@@ -134,8 +134,8 @@ function Home() {
         <div className="bg-gray-900 rounded-2xl p-3 mt-10 m-20 mb-5 text-center">
             <h1 className="text-2xl text-center">Team Loadout</h1>
             
-            {/* Flex Box Container Temporary */}
-            <div className="grid grid-cols-6 gap-3">
+            {/* Flex Box Container */}
+            <div className="grid grid-cols-6 gap-3 p-3">
                 {SINNERS.map(sinner => (
                     <TeamSlot key={sinner} sinner={sinner}/>
                 ))}
@@ -170,6 +170,9 @@ function Home() {
             <h1 className="text-2xl text-center">Collection</h1>
             {/* Filter Options will go here */}
             <div className="">
+                {/* Search Bar */}
+
+                
                 {/* Sinner Filter */}
                 <label>Sinner Filter</label>
                 <select

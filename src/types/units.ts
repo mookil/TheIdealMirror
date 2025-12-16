@@ -22,12 +22,12 @@ export type UnitType = 'identity' | 'ego'
 
 
 export const SINNERS = [
-  'YiSang', 
+  'Yi Sang', 
   'Faust', 
-  'DonQuixote', 
+  'Don Quixote', 
   'Ryoshu', 
   'Meursault',
-  'HongLu', 
+  'Hong Lu', 
   'Heathcliff', 
   'Ishmael', 
   'Rodion', 
